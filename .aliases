@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# COMMON DIRECTORIES
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias dc="cd ~/Documents"
+alias p="cd ~/Documents/projects"
+alias home="cd ~"
+
+# SHOW/HIDE HIDDEN FILES
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# SHOW/HIDE DESKTOP ICONS
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# NeoVim
+alias vi=nvim
+alias vim=nvim
