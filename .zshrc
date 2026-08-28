@@ -22,7 +22,6 @@ source $ZSH/oh-my-zsh.sh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 fi
-
 ## User configuration
 export LANG=en_US.UTF-8
 

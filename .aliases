@@ -1,11 +1,6 @@
-#!/usr/bin/env bash
+ #!/usr/bin/env bash
 
-# COMMON DIRECTORIES
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias dc="cd ~/Documents"
-alias p="cd ~/Documents/projects"
-alias home="cd ~"
+alias ls="eza --icons --git --group-directories-first --header"
 
 # SHOW/HIDE HIDDEN FILES
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -17,4 +12,7 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # NeoVim
 alias vi=nvim
-alias vim=nvim
+
+# Files preview
+alias fzfp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias vip='nvim $(fzf -m --preview="bat --style=numbers --color=always --line-range :500 {}")'
