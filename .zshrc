@@ -2,7 +2,6 @@
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
-
 . "$HOME/.local/bin/env"
 
 # Path to your Oh My Zsh installation.

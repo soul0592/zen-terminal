@@ -7,13 +7,17 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = '[{{ .CurrentDate | date .Format }}]'
-    foreground = '#E5C07B'
-    type = 'time'
+    template = ' {{ .Path }}'
+    foreground = '#61AFEF'
+    type = 'path'
     style = 'plain'
 
     [blocks.segments.properties]
-      time_format = '15:04'
+      style = 'full'
+
+      [blocks.segments.properties.mapped_locations]
+        '~/code' = '  '
+        '~/code/*' = '  '
 
   [[blocks.segments]]
     template = '  {{ .Name }}'
@@ -21,15 +25,8 @@ final_space = true
     type = 'shell'
     style = 'plain'
 
-    [blocks.segments.properties]
-      [blocks.segments.properties.mapped_shell_names]
-        bash = 'Bash'
-        cmd = 'Cmd'
-        powershell = 'Shell'
-        pwsh = 'Shell'
-
   [[blocks.segments]]
-    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+    template = '  {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}'
     foreground = '#F3C267'
     type = 'git'
     style = 'plain'
@@ -53,7 +50,138 @@ final_space = true
     foreground_templates = ['{{ if gt .Code 0 }}#E06C75{{ end }}']
 
   [[blocks.segments]]
-    template = ' {{ .FormattedMs }} '
+    type = 'elixir'
+    style = 'plain'
+    foreground = 'purple'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'go'
+    style = 'plain'
+    foreground = 'cyan'
+    template = ' ‭ﳑ {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'java'
+    style = 'plain'
+    foreground = 'orange'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'kotlin'
+    style = 'plain'
+    foreground = 'cyan'
+    template = ' <b>K</b> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'node'
+    style = 'plain'
+    foreground = 'lightgreen'
+    template = '  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'php'
+    style = 'plain'
+    foreground = 'purple'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}'
+    foreground = 'yellow'
+    type = 'python'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'r'
+    style = 'plain'
+    foreground = 'blue'
+    template = ' R {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'react'
+    style = 'plain'
+    foreground = '#81a1c1'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'ruby'
+    style = 'plain'
+    foreground = 'red'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'rust'
+    style = 'plain'
+    foreground = 'white'
+    template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = true
+
+  [[blocks.segments]]
+    type = 'npm'
+    style = 'plain'
+    foreground = '#193549'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'kubectl'
+    style = 'plain'
+    foreground = '#0A75AD'
+    template = ' 󱃾{{if .Namespace}} {{.Namespace}}{{end}}'
+
+    [blocks.segments.properties.context_aliases]
+    'arn:aws:eks:eu-west-1:1234567890:cluster/posh' = 'posh'
+
+  [[blocks.segments]]
+    type = 'docker'
+    style = 'plain'
+    foreground = '#0B59E7'
+    template = '  {{.Context}}'
+
+  [[blocks.segments]]
+    template = ' 󱦟 {{ .FormattedMs }}'
     foreground = '#b8ff75'
     type = 'executiontime'
     style = 'diamond'
@@ -63,19 +191,14 @@ final_space = true
       always_enabled = true
       style = 'roundrock'
 
-[[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
-
   [[blocks.segments]]
-    template = ' {{ .Path }}'
-    foreground = '#61AFEF'
-    type = 'path'
+    template = '  {{ .CurrentDate | date .Format }}'
+    foreground = '#ffd17a'
+    type = 'time'
     style = 'plain'
 
     [blocks.segments.properties]
-      style = 'full'
+      time_format = '15:04:02'
 
 [[blocks]]
   type = 'prompt'
@@ -90,6 +213,19 @@ final_space = true
 
   [[blocks.segments]]
     template = '❯'
-    foreground = '#E06C75'
+    foreground = 'green'
     type = 'text'
     style = 'plain'
+
+[transient_prompt]
+  foreground_templates = [
+    '{{if gt .Code 0}}red{{end}}',
+    '{{if eq .Code 0}}#339488{{end}}',
+  ]
+  background = 'transparent'
+  template = '❯'
+
+[secondary_prompt]
+  foreground = 'magenta'
+  background = 'transparent'
+  template = '❯❯'
