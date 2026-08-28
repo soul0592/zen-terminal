@@ -161,7 +161,7 @@ source <(fzf --zsh)
 #eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/almadelangel/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 
 # Hooks - Run Commands on Directory Change
 autoload -Uz add-zsh-hook
@@ -190,10 +190,8 @@ function auto_nvm() {
 # Register them all
 add-zsh-hook chpwd auto_venv
 add-zsh-hook chpwd auto_nvm
-
 # End of Docker CLI completions
 
 # Load completions
 autoload -Uz compinit && compinit
-
 zinit cdreplay -q
